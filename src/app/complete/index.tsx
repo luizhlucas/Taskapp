@@ -1,15 +1,15 @@
 import { useState } from "react"
-import { View, Alert, FlatList, Modal, Text } from "react-native";
+import { View, Alert, Modal, Text } from "react-native";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback } from "react";
 
 import { styles } from "./styles";
 import { colors } from "@/app/colors";
 
-import { Tasks } from "@/components/task";
 import { TaskStorage, taskStorage } from "@/storage/task-storage"; 
 import { Option } from '@/components/option'
 import { Icon } from "@/components/Icon";
+import { List } from "@/components/list";
 
 export default function Complete() {
     const [tasks, setTasks] = useState<TaskStorage[]>([])
@@ -58,16 +58,8 @@ export default function Complete() {
             <View style={styles.header}>
                 <Icon iconName="arrow-back" iconColor={colors.green[100]} onPress={() => router.back()}/>
             </View>
-            <FlatList
-            data={tasks}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item }) => (
-                <Tasks 
-                name={item.name}
-                onPress={() => handleDetails(item)}
-                />
-            )}
-        />
+
+        <List data={tasks} onPress={handleDetails}/>
 
         <Modal transparent visible={modalVisible}>
                     <View style={styles.modal}>
