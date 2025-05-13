@@ -1,6 +1,5 @@
 import { useState } from "react"
-import { View, TouchableOpacity, Alert, FlatList, Modal, Text } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { View, Alert, FlatList, Modal, Text } from "react-native";
 import { router, useFocusEffect } from "expo-router";
 import { useCallback } from "react";
 
@@ -10,6 +9,7 @@ import { colors } from "@/app/colors";
 import { Tasks } from "@/components/task";
 import { TaskStorage, taskStorage } from "@/storage/task-storage"; 
 import { Option } from '@/components/option'
+import { Icon } from "@/components/Icon";
 
 export default function Complete() {
     const [tasks, setTasks] = useState<TaskStorage[]>([])
@@ -56,9 +56,7 @@ export default function Complete() {
     return(
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity activeOpacity={0.6} onPress={() => router.back()}>
-                    <MaterialIcons name="arrow-back" size={32} color={colors.green[100]} />
-                </TouchableOpacity>
+                <Icon iconName="arrow-back" iconColor={colors.green[100]} onPress={() => router.back()}/>
             </View>
             <FlatList
             data={tasks}
@@ -66,7 +64,6 @@ export default function Complete() {
             renderItem={({ item }) => (
                 <Tasks 
                 name={item.name}
-                onDetails={() => console.log("clicou")}
                 onPress={() => handleDetails(item)}
                 />
             )}
@@ -77,9 +74,7 @@ export default function Complete() {
                         <View style={styles.modalContent}>
                             <View style={styles.modalHeader}>
                                 <Text style={styles.modalCategory}>Curso</Text>
-                                <TouchableOpacity activeOpacity={0.6} onPress={() => setModalVisible(false)}>
-                                    <MaterialIcons name="close" size={32} color={colors.gray[100]} />
-                                </TouchableOpacity>
+                                <Icon iconName="close" iconColor={colors.gray[100]} onPress={() => setModalVisible(false)}/>
                             </View>
         
                             <Text style={styles.modalTaskName}>{task.name}</Text>

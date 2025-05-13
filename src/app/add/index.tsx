@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { View, TouchableOpacity, Alert } from "react-native";
-import { MaterialIcons } from "@expo/vector-icons";
+import { View, Alert } from "react-native";
 import { router } from "expo-router";
 
 import { styles } from "./styles";
@@ -9,6 +8,7 @@ import { colors } from "@/app/colors";
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";
 import { taskStorage } from "@/storage/task-storage"; 
+import { Icon } from "@/components/Icon";
 
 export default function Add() {
     const [name, setName] = useState("");
@@ -39,9 +39,7 @@ export default function Add() {
     return(
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity activeOpacity={0.6} onPress={() => router.back()}>
-                    <MaterialIcons name="arrow-back" size={32} color={colors.green[100]} />
-                </TouchableOpacity>
+                <Icon iconName="arrow-back" iconColor={colors.green[100]} onPress={() => router.back()}/>
             </View>
             <View style={styles.form}>
                 <Input onChangeText={setName} />

@@ -6,10 +6,9 @@ import { colors } from "@/app/colors";
 
 type Props = TouchableOpacityProps &{
     name: string
-    onDetails: () => void
 }
 
-export function Tasks({ name, onDetails, ...rest }: Props){
+export function Tasks({ name, ...rest }: Props){
     return(
         <View style={styles.container}>
             <View style={styles.details}>
@@ -18,7 +17,7 @@ export function Tasks({ name, onDetails, ...rest }: Props){
                 </Text>
             </View>
 
-            <TouchableOpacity onPress={onDetails} {...rest}>
+            <TouchableOpacity {...rest}>
                 <MaterialIcons name="more-horiz"size={26} color={colors.gray[100]} />
             </TouchableOpacity>
 

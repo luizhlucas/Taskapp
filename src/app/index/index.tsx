@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Text, View, Image, TouchableOpacity, Modal, FlatList, Alert } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 import { router, useFocusEffect } from "expo-router";
@@ -10,6 +10,7 @@ import { colors } from "@/app/colors";
 import { Tasks } from "@/components/task";
 import { TaskStorage, taskStorage } from "@/storage/task-storage"; 
 import { Option } from '@/components/option'
+import { Icon } from "@/components/Icon";
 
 export default function Index() {
     const [tasks, setTasks] = useState<TaskStorage[]>([])
@@ -79,12 +80,8 @@ export default function Index() {
         <View style={styles.header}>
             <Image source={require("@/assents/logo.png")} style={styles.logo} />
             <View style={styles.navigate}>
-                <TouchableOpacity activeOpacity={0.6} onPress={() => router.navigate("/complete")}>
-                    <MaterialIcons name="check" size={32} color={colors.green[100]} />
-                </TouchableOpacity>
-                <TouchableOpacity activeOpacity={0.6} onPress={() => router.navigate("/add")}>
-                    <MaterialIcons name="add" size={32} color={colors.green[100]} />
-                </TouchableOpacity>
+                <Icon iconName="check" iconColor={colors.green[100]} onPress={() => router.navigate("/complete")}/>
+                <Icon iconName="add" iconColor={colors.green[100]} onPress={() => router.navigate("/add")}/>
             </View>
         </View>
             {tasks.length === 0 && (
@@ -102,7 +99,6 @@ export default function Index() {
                 renderItem={({ item }) => (
                     <Tasks 
                     name={item.name}
-                    onDetails={() => console.log("clicou")}
                     onPress={() => handleDetails(item)}
                     />
                 )}
@@ -111,10 +107,8 @@ export default function Index() {
             <View style={styles.modal}>
                 <View style={styles.modalContent}>
                     <View style={styles.modalHeader}>
-                        <Text style={styles.modalCategory}>Curso</Text>
-                        <TouchableOpacity activeOpacity={0.6} onPress={() => setModalVisible(false)}>
-                            <MaterialIcons name="close" size={32} color={colors.gray[100]} />
-                        </TouchableOpacity>
+                        <Text style={styles.modalCategory}>Task</Text>
+                        <Icon iconName="close" iconColor={colors.gray[100]} onPress={() => setModalVisible(false)}/>
                     </View>
 
                     <View></View>
@@ -123,9 +117,7 @@ export default function Index() {
 
                     <View style={styles.modalFooter}>
                         <Option name="Delete" icon="delete" variant="secondary" onPress={handleRemove}/>
-                        <TouchableOpacity activeOpacity={0.6} onPress={handleComplete}>
-                            <MaterialIcons name="check" size={32} color={colors.gray[100]} />
-                        </TouchableOpacity>
+                        <Icon iconName="check" iconColor={colors.gray[100]} onPress={handleComplete}/>
                     </View>
 
                 </View>
