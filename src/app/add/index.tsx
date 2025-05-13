@@ -3,7 +3,7 @@ import { View, Alert } from "react-native";
 import { router } from "expo-router";
 
 import { styles } from "./styles";
-import { colors } from "@/app/colors";
+import { colors } from "@/styles/colors";
 
 import { Input } from "@/components/input";
 import { Button } from "@/components/button";

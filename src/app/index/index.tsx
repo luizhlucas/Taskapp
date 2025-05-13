@@ -5,7 +5,7 @@ import { router, useFocusEffect } from "expo-router";
 import { useCallback } from "react";
 
 import { styles } from "./styles";
-import { colors } from "@/app/colors";
+import { colors } from "@/styles/colors";
 
 import { TaskStorage, taskStorage } from "@/storage/task-storage"; 
 import { Option } from '@/components/option'

@@ -1,4 +1,4 @@
-import { FlatList, TouchableOpacityProps } from "react-native";
+import { FlatList } from "react-native";
 import { Tasks } from "../task";
 
 type TaskItem = {
